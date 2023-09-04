@@ -1,0 +1,138 @@
+@import url('https://fonts.googleapis.com/css?family=Quicksand:400,700&display=swap');
+body{
+   font-family:'Times New Roman', sans-serif;
+   margin: 0px 20px 20px 20px;
+   padding: 0px 20px 20px 20px;
+   text-align: left;
+   box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.2);
+   border-radius: 5px;
+}
+p{
+	color: black;
+    font-size: 20px;
+}
+h2,h3{
+    color: black;
+    font-family: 'Times New Roman';
+}
+b a{
+    color: red;
+}
+b a:hover{
+    color:#FFD523 ;
+}
+.judul{
+	padding: 10px;
+	font-size: 10px;
+	background-image: linear-gradient(180deg,red,#FFD523);
+	text-align: center;
+	color: white;
+}
+.judul img{
+	width: 50px;
+}
+#sejarah img {
+    float: left;
+    margin: 10px;
+    width: 50%;
+}
+#Budaya img{
+    float: left;
+    margin: 10px;
+    width: 30%;
+}
+#Wisata img{
+    float: center;
+    margin: 10px;
+    width: 50%;
+}
+.clear {
+    clear: left;
+}
+.clear {
+    clear: center;
+}
+
+ul li a.active:hover{
+	background: red;
+	padding: 10px 20px;
+}
+ul li a.active2:hover{
+	background: #FFD523;
+	padding: 10px 20px;
+}
+ul li a.active3:hover{
+	background: black;
+	padding: 10px 20px;
+}
+nav li{
+	display: inline;
+	margin: 20px;
+	
+}
+nav{
+	background-image: linear-gradient(180deg,#FFD523,black);
+	padding: 5px;
+    position: sticky;
+    top: 0;
+}
+nav a{
+	color: white;
+    text-decoration: none;
+}
+main{
+    padding: 20px;
+    overflow: auto;
+}    
+#content {
+    float: left;
+    width: 75%;
+}
+aside img{
+	width: 250px;
+	float: center;
+	padding-left: 50px;
+}
+aside {
+    float: right;
+    width: 25%;
+    padding-left: 50px;
+    
+}
+* {
+    box-sizing: border-box;
+}
+.card1{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+   border-radius: 5px;
+   padding: 20px;
+   margin-top: 20px;
+}
+th,td{
+	text-align: left;
+	color: black;
+    font-size: 18px;
+}
+footer {
+   padding: 1px;
+   color: white;
+   background-image: linear-gradient(180deg,red,#FFD523,black);
+   text-align: center;
+   font-weight: bold;
+   text-decoration: none;
+}
+.card{
+    box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.2);
+   border-radius: 25px;
+   padding: 20px;
+   margin-top: 10px;
+}
+ol li{
+    text-align: left;
+    padding-left: 20px;
+    text-decoration: none;
+    list-style-type: none;
+    color: black;
+}
+
+

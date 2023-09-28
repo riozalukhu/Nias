@@ -14,7 +14,7 @@ pipeline {
                     def dockerTag = "my-html-nginx:${env.BUILD_NUMBER}"
 
                     sh """
-                        docker build -t $dockerTag .
+                        sudo docker build -t $dockerTag .
                     """
                 }
             }

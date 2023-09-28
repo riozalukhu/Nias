@@ -4,46 +4,34 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                // Checkout your HTML+CSS project from your version control system (e.g., Git)
-                // You can customize this step based on your VCS.
+                // Checkout your code from your version control system (e.g., Git)
                 checkout scm
             }
         }
 
         stage('Install Dependencies') {
             steps {
-                // Install required dependencies (e.g., Node.js, npm)
-                // This may vary based on your project's setup.
-                sh 'npm install -g htmlhint csslint'
+                // Install Node.js and npm if not already installed
+                sh 'curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -'
+                sh 'sudo apt-get install -y nodejs'
+                
+                // Install project dependencies using npm
+                sh 'npm install'
             }
         }
 
-        stage('HTMLLint') {
+        stage('Run Unit Tests') {
             steps {
-                // Run HTMLHint for HTML validation
-                sh 'htmlhint ./*.html'
-            }
-        }
-
-        stage('CSSLint') {
-            steps {
-                // Run CSSLint for CSS validation
-                sh 'csslint ./*.css'
-            }
-        }
-
-        stage('Deploy to Nginx') {
-            steps {
-                // Copy HTML and CSS files to Nginx web server directory
-                sh 'cp -r ./*.html ./*.css /var/www/html/'
+                // Run Jest tests
+                sh 'npm test'
             }
         }
     }
 
     post {
         always {
-            // Cleanup: Remove any temporary files or directories
-            sh 'rm -rf node_modules'
+            // Archive test results or any other post-build actions you need
+            junit '**/test-results.xml'
         }
     }
 }

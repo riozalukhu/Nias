@@ -4,34 +4,56 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                // Checkout your code from your version control system (e.g., Git)
-                checkout scm
+                git branch: 'main', credentialsId: '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', url: 'https://github.com/riozalukhu/Nias.git'
             }
         }
 
-        stage('Install Dependencies') {
+        stage('Build Docker Image') {
             steps {
-                // Install Node.js and npm if not already installed
-                sh 'curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -'
-                sh 'sudo apt-get install -y nodejs'
-                
-                // Install project dependencies using npm
-                sh 'npm install'
+                script {
+                    def dockerTag = "my-html-nginx:${env.BUILD_NUMBER}"
+
+                    sh """
+                        docker build -t $dockerTag .
+                    """
+                }
             }
         }
 
-        stage('Run Unit Tests') {
+        stage('Deploy Docker Container') {
             steps {
-                // Run Jest tests
-                sh 'npm test'
+                script {
+                    
+                    def portMappings = "-p 80:82 -p 443:443"
+
+            
+                    def containerName = "my-html-nginx-container"
+
+                    
+                    sh """
+                        docker run -d --name $containerName $portMappings my-html-nginx:${env.BUILD_NUMBER}
+                    """
+                }
+            }
+        }
+
+        stage('Cleanup') {
+            steps {
+              
+                sh """
+                    docker container prune -f
+                    docker image prune -f
+                """
             }
         }
     }
 
     post {
-        always {
-            // Archive test results or any other post-build actions you need
-            junit '**/test-results.xml'
+        success {
+            echo "Deployment successful"
+        }
+        failure {
+            echo "Deployment failed"
         }
     }
 }

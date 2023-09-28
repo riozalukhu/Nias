@@ -1,11 +1,10 @@
 pipeline {
     agent any
     stages {
-        stage('Code Static Analysis Inspection') {
+        stage('Unit Test') {
             steps {
-                withSonarQubeEnv('SonarQube_Server') {
-                    sh 'sonar-scanner'
-                }
+                sh 'npm install'
+                sh 'npm test'     
             }
         }
     }
